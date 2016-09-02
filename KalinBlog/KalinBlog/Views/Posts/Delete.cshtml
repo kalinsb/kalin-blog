@@ -1,0 +1,47 @@
+﻿@model KalinBlog.Models.Post
+
+@{
+    ViewBag.Title = "Изтриване";
+}
+
+<h2>Изтриване</h2>
+
+<h3>Сигурен ли си че искаш да изтриеш поста?</h3>
+<div>
+    <h4>Пост</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Заглавие
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            Съдържание
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+           Дата
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Изтрии" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

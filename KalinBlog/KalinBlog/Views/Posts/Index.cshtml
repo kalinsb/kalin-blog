@@ -1,0 +1,62 @@
+﻿@using KalinBlog.Classes;
+@using KalinBlog.Models;
+@model IEnumerable<Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Начало</h2>
+
+<p>
+    @Html.ActionLink("Нова статия", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Заглавие
+        </th>
+        <th>
+            Съдържание
+        </th>
+        <th>
+            Дата
+        </th>
+        <th>
+            Автор
+        </th>
+        <th>
+            Действия
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Utils.CutText(item.Body)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @if (item.Author !=null )
+            {
+                @item.Author.UserName
+            }
+            else
+            {
+                    @:(няма автор)
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Редактирай", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Детайли", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Изтрии", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
